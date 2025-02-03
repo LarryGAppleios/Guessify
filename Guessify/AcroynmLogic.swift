@@ -12,21 +12,21 @@ import SwiftUI
 import SwiftUI
 
 struct AcronymLogic: View {
+    
     let acronymWords: [String] = ["ASAP", "BTW", "FYI", "IDK", "IMO", "LOL", "NVM", "WWJD", "YOLO", "ROFL", "OMG", "JFYI"]
     
-    // Choose a random acronym from the list
+    // Choosing a random acronym from the list
     @State private var currentAcronym: String = ""
     @State private var guessedLetters: Set<Character> = []
     @State private var correctGuesses: Set<Character> = []
     @State private var wrongGuesses: Int = 0
     @State private var guessesSoFar: Int = 0
-    var guessesRemaining: Int {
-        maxGuesses - guessesSoFar
-    }
+    @State private var guessesRemaining: Int = 6
+    
     
     let maxGuesses: Int = 6
 
-    // Function to display the acronym with guessed letters
+    // Function to show the acronym with guessed letters
     func acronymDisplay() -> String {
         var display = ""
         for letter in currentAcronym {
@@ -48,8 +48,8 @@ struct AcronymLogic: View {
         guessesSoFar = 0
     }
     
-    // Function to handle a guess
-    func handleGuess(letter: Character) {
+    // Function to handle a guess from one player
+    func player1Guess(letter: Character) {
         if guessedLetters.contains(letter) {
             // Already guessed this letter, return early
             return
@@ -72,34 +72,39 @@ struct AcronymLogic: View {
             Text("Acronym Guessing Game")
                 .font(.title)
                 .padding()
-            
+                .foregroundColor(.white)
             Text("Guess the acronym:")
                 .font(.subheadline)
+                .foregroundColor(.white)
             
             // Display the acronym with underscores for unguessed letters
             Text(acronymDisplay())
                 .font(.largeTitle)
                 .padding()
-
+                .foregroundColor(.white)
             // Show how many guesses are remaining
             Text("Guesses Remaining: \(guessesRemaining)")
                 .padding()
-            
+                .foregroundColor(.white)
             // Input for the user's guess (a single letter)
-            HStack {
-                ForEach(Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), id: \.self) { letter in
-                    Button(action: {
-                        handleGuess(letter: letter)
-                    }) {
-                        Text(String(letter))
-                            .font(.title)
-                            .padding(8)
-                            .frame(width: 40, height: 40)
-                            .background(guessedLetters.contains(letter) ? Color.gray : Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(5)
+            ScrollView(.horizontal,showsIndicators: false) {
+                HStack {
+                    ForEach(Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), id: \.self) { letter in
+                        Button(action: {
+                            player1Guess(letter: letter)
+                        }) {
+                            Text(String(letter))
+                                .font(.title)
+                                .padding(8)
+                                .frame(width: 40, height: 40)
+                                .background(guessedLetters.contains(letter) ? Color.gray : Color.yellow)
+                                .foregroundColor(.white)
+                                .cornerRadius(5)
+                            
+                            
+                        }
+                        .disabled(guessedLetters.contains(letter))
                     }
-                    .disabled(guessedLetters.contains(letter))
                 }
             }
             .padding()
@@ -109,9 +114,10 @@ struct AcronymLogic: View {
                 Text(guessesRemaining <= 0 ? "Game Over" : "You Win!")
                     .font(.title)
                     .padding()
-                
+                    .foregroundColor(.white)
                 Button("Start New Game") {
                     startNewGame()
+                    
                 }
                 .padding()
             }
