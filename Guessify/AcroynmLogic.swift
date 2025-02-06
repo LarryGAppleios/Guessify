@@ -21,23 +21,24 @@ struct AcronymLogic: View {
     @State private var wrongGuesses: Int = 0
     @State private var guessesSoFar: Int = 0
     @State private var guessesRemaining: Int = 6
+    @State private var currentHint: String = ""
     
-//    struct AcronymHint: View {
-//        let acronymWords:[String: String] = [
-//            "ASAP" : "As Fast as you can.",
-//            "BTW" : "Used to introduce a side note in conversation.",
-//            "FYI" : "Providing Information that may be useful.",
-//            "IDK" : "Expressing uncertainty.",
-//            "IMO" : "Stating an opinion.",
-//            "LOL" : "Reaction to something funny.",
-//            "NVM" : "Telling some to disregard what was said.",
-//            "WWJD" : "Religious phrase.",
-//            "YOLO" : "Encouragement to take risks.",
-//            "ROFL" : "Something is extremely funny.",
-//            "OMG" : "Expressing suprise or shock.",
-//            "JFYI" : "Another way to say just so you know.",
-//            "TYT" : "Don't rush.",
-//            "SMH" : "Disappointed expression." ]
+//  Connects correct acronym to the correct hint.
+        let hintDictionary:[String: String] = [
+            "ASAP" : "As Fast as you can.",
+            "BTW" : "Used to introduce a side note in conversation.",
+            "FYI" : "Providing Information that may be useful.",
+            "IDK" : "Expressing uncertainty.",
+            "IMO" : "Stating an opinion.",
+            "LOL" : "Reaction to something funny.",
+            "NVM" : "Telling some to disregard what was said.",
+            "WWJD" : "Religious phrase.",
+            "YOLO" : "Encouragement to take risks.",
+            "ROFL" : "Something is extremely funny.",
+            "OMG" : "Expressing suprise or shock.",
+            "JFYI" : "Another way to say just so you know.",
+            "TYT" : "Don't rush.",
+            "SMH" : "Disappointed expression." ]
         
             
     
@@ -59,6 +60,10 @@ struct AcronymLogic: View {
     // Function to start a new game
     func startNewGame() {
         currentAcronym = acronymWords.randomElement() ?? "ASAP"
+        
+        // Hint Logic
+        currentHint = hintDictionary[currentAcronym] ?? "No hint available"
+        
         guessedLetters.removeAll()
         correctGuesses.removeAll()
         wrongGuesses = 0
@@ -87,12 +92,19 @@ struct AcronymLogic: View {
     var body: some View {
         VStack {
             Text("Acronym Guessing Game")
-                .font(.title)
+                .font(.title2.bold())
                 .padding()
+                .shadow(color: .yellow, radius: 12)
                 .foregroundColor(.white)
             Text("Guess the acronym:")
-                .font(.subheadline)
+                .font(.body)
                 .foregroundColor(.white)
+            
+            Text("Hint: \(currentHint)")
+                .font(.title2.bold())
+                .foregroundColor(.white)
+                .shadow(color: .yellow, radius: 12)
+                .fixedSize(horizontal: false, vertical: true)
             
             // Display the acronym with underscores for unguessed letters
             Text(acronymDisplay())
