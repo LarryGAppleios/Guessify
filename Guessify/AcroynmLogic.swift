@@ -9,11 +9,10 @@ import SwiftUI
  
 
 
-import SwiftUI
 
 struct AcronymLogic: View {
     
-    let acronymWords: [String] = ["ASAP", "BTW", "FYI", "IDK", "IMO", "LOL", "NVM", "WWJD", "YOLO", "ROFL", "OMG", "JFYI"]
+    let acronymWords: [String] = ["ASAP", "BTW", "FYI", "IDK", "IMO", "LOL", "NVM", "WWJD", "YOLO", "ROFL", "OMG", "JFYI", "TYT", "SMH"]
     
     // Choosing a random acronym from the list
     @State private var currentAcronym: String = ""
@@ -23,6 +22,24 @@ struct AcronymLogic: View {
     @State private var guessesSoFar: Int = 0
     @State private var guessesRemaining: Int = 6
     
+//    struct AcronymHint: View {
+//        let acronymWords:[String: String] = [
+//            "ASAP" : "As Fast as you can.",
+//            "BTW" : "Used to introduce a side note in conversation.",
+//            "FYI" : "Providing Information that may be useful.",
+//            "IDK" : "Expressing uncertainty.",
+//            "IMO" : "Stating an opinion.",
+//            "LOL" : "Reaction to something funny.",
+//            "NVM" : "Telling some to disregard what was said.",
+//            "WWJD" : "Religious phrase.",
+//            "YOLO" : "Encouragement to take risks.",
+//            "ROFL" : "Something is extremely funny.",
+//            "OMG" : "Expressing suprise or shock.",
+//            "JFYI" : "Another way to say just so you know.",
+//            "TYT" : "Don't rush.",
+//            "SMH" : "Disappointed expression." ]
+        
+            
     
     let maxGuesses: Int = 6
 
@@ -87,8 +104,9 @@ struct AcronymLogic: View {
                 .padding()
                 .foregroundColor(.white)
             // Input for the user's guess (a single letter)
-            ScrollView(.horizontal,showsIndicators: false) {
-                HStack {
+            let columns = [GridItem(.adaptive(minimum: 40))]
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 10) {
                     ForEach(Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), id: \.self) { letter in
                         Button(action: {
                             player1Guess(letter: letter)
@@ -107,6 +125,7 @@ struct AcronymLogic: View {
                     }
                 }
             }
+            .frame(height: 290)
             .padding()
 
             // Show the result (if game over)
@@ -125,8 +144,12 @@ struct AcronymLogic: View {
         .onAppear {
             startNewGame() // Start the game when the view appears
         }
+      
+            
+        }
     }
-}
+
+
 struct AcroynmLogic: View {
     var body: some View {
         
