@@ -7,12 +7,49 @@
 
 import SwiftUI
 
-struct GameView: View {
+struct GameArea: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            RadialGradient(gradient: Gradient(colors: [Color.black, Color("StarsView")]), center: .center, startRadius: 250, endRadius: 900)
+                .ignoresSafeArea()
+            VStack(spacing:20){
+                VStack(spacing:20){
+                    HStack(spacing:20){
+                        AcronymLogic()
+                            .frame(width: 300, height: 300)
+
+                        
+
+                    }
+
+                    
+                }
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+        }
     }
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 #Preview {
-    GameView()
+    GameArea()
 }
+
+
