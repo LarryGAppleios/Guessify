@@ -1,8 +1,8 @@
 //
-//  GameArea.swift
+//  GameView.swift
 //  Guessify
 //
-//  Created by Otis Young on 2/2/25.
+//  Created by Otis Young on 2/5/25.
 //
 
 import SwiftUI
@@ -10,7 +10,7 @@ import SwiftUI
 struct GameArea: View {
     var body: some View {
         ZStack {
-            RadialGradient(gradient: Gradient(colors: [Color.black, Color("DarkYellow")]), center: .center, startRadius: 250, endRadius: 900)
+            RadialGradient(gradient: Gradient(colors: [Color.black, Color("StarsView")]), center: .center, startRadius: 250, endRadius: 900)
                 .ignoresSafeArea()
             VStack(spacing:20){
                 VStack(spacing:20){
@@ -51,3 +51,5 @@ struct GameArea: View {
 #Preview {
     GameArea()
 }
+
+
