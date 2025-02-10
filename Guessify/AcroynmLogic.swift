@@ -22,6 +22,7 @@ struct AcronymLogic: View {
     @State private var guessesSoFar: Int = 0
     @State private var guessesRemaining: Int = 6
     @State private var currentHint: String = ""
+
     
 //  Connects correct acronym to the correct hint.
         let hintDictionary:[String: String] = [
@@ -68,6 +69,7 @@ struct AcronymLogic: View {
         correctGuesses.removeAll()
         wrongGuesses = 0
         guessesSoFar = 0
+        guessesRemaining = maxGuesses
     }
     
     // Function to handle a guess from one player
@@ -84,8 +86,10 @@ struct AcronymLogic: View {
         } else {
             wrongGuesses += 1
             guessesSoFar += 1
+            
+            
         }
-        
+    
         guessesSoFar += 1
     }
     
