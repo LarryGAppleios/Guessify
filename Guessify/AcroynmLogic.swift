@@ -22,6 +22,7 @@ struct AcronymLogic: View {
     @State private var guessesSoFar: Int = 0
     @State private var guessesRemaining: Int = 6
     @State private var currentHint: String = ""
+    @State var round = 1
     
 //  Connects correct acronym to the correct hint.
         let hintDictionary:[String: String] = [
@@ -31,15 +32,49 @@ struct AcronymLogic: View {
             "IDK" : "Expressing uncertainty.",
             "IMO" : "Stating an opinion.",
             "LOL" : "Reaction to something funny.",
-            "NVM" : "Telling some to disregard what was said.",
+            "NVM" : "Telling someone to disregard what was said.",
             "WWJD" : "Religious phrase.",
             "YOLO" : "Encouragement to take risks.",
             "ROFL" : "Something is extremely funny.",
             "OMG" : "Expressing suprise or shock.",
             "JFYI" : "Another way to say just so you know.",
             "TYT" : "Don't rush.",
-            "SMH" : "Disappointed expression." ]
+            "SMH" : "Disappointed expression.",
+            // Round 2
+            "BFF" : "Your friend til the end.",
+            "DIY" : "Craft it yourself, no store needed!",
+            "ETA" : "How long until arrival ?",
+            "TBA" : "Details are coming soon.",
+            "TBD" : "Not decided yet.",
+            "TGIF" : "Weekend starts now.",
+            "WTG" : "Great job, keep it up!",
+            "NSFW" : "Don't open this at work.",
+            "IYKYK" : "An inside joke for those who know.",
+            "FOMO" : "Don't want to miss out",
+            "BRB" : "Gone for a sec.",
+            "AMA" : "Ask whatever.",
+            // Round 3
+            "CEO" : "The big boss in charge!",
+            "EOD" : "Deadline by tonight.",
+            "EOY" : "Wrapping up the year.",
+            "NDA" : "Keep this a secret.",
+            "ROI" : "What's the profit ?",
+            "CFO" : "Handles all the money.",
+            "UI" : "What you see on screen!",
+            "VPN" : "Browse safely and privately.",
+            "GPA" : "Your academic score.",
+            // Round 4
+            "ESL" : "Learning English.",
+            "STEM" : "A class involving 4 subjects.",
+            "ADHD" : "A brain that loves to multitask.",
+            "AIDS" : "A serious immune system disease.",
+            "BPM" : "Heartbeats or music tempo.",
+            "DNA" : "Your genetic blueprint.",
+            "ICU" : "Where critical care happens!",
+            "RNA" : "DNA's messenger helper.",
+            "ACT" : "A big test for college."]
         
+    
             
     
     let maxGuesses: Int = 6
@@ -68,6 +103,9 @@ struct AcronymLogic: View {
         correctGuesses.removeAll()
         wrongGuesses = 0
         guessesSoFar = 0
+        guessesRemaining = maxGuesses
+        
+        
     }
     
     // Function to handle a guess from one player
@@ -83,7 +121,7 @@ struct AcronymLogic: View {
             correctGuesses.insert(letter)
         } else {
             wrongGuesses += 1
-            guessesSoFar += 1
+            guessesRemaining -= 1
         }
         
         guessesSoFar += 1
