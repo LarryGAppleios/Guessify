@@ -152,6 +152,7 @@ struct AcronymLogic: View {
             Text("Guesses Remaining: \(guessesRemaining)")
                 .padding()
                 .foregroundColor(.white)
+            
             Text("Round \(currentRound)")
                 .font(.title2.bold())
                 .padding()
