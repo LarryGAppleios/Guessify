@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AcronymLogic: View {
-    
+    // Acroynyms we will use.
     let acronymWords: [String] = ["ASAP", "BTW", "FYI", "IDK", "IMO", "LOL", "NVM", "WWJD", "YOLO", "ROFL", "OMG", "JFYI", "TYT", "SMH", "BFF", "DIY", "ETA", "TBA", "TBD", "TGIF", "WTG", "NSFW", "IYKYK", "FOMO", "BRB", "AMA", "CEO", "EOD", "EOY", "NDA", "ROI", "CFO", "UI", "VPN", "GPA", "ESL", "STEM", "ADHD", "AIDS", "BPM", "DNA", "ICU", "RNA", "ACT"]
     
     @State private var currentAcronym: String = ""
@@ -19,7 +19,7 @@ struct AcronymLogic: View {
     @State private var guessesRemaining: Int = 6
     @State private var currentHint: String = ""
     @State private var currentRound: Int = 1
-    
+    // Hints that match the acronym for explanation.
     let hintDictionary: [String: String] = [
         "ASAP" : "As Fast as you can.",
         "BTW" : "Used to introduce a side note in conversation.",
@@ -68,7 +68,7 @@ struct AcronymLogic: View {
     ]
     
     let maxGuesses: Int = 6
-    
+    // The start of the function for what you see.
     func acronymDisplay() -> String {
         var display = ""
         for letter in currentAcronym {
