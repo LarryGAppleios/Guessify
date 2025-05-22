@@ -22,25 +22,25 @@ struct AcronymLogic: View {
     
     let hintDictionary: [String: String] = [
         "ASAP" : "As Fast as you can.",
-        "BTW" : "Used to introduce a side note in conversation.",
+        "BTW" : "Something you forgot to say in a conversation.",
         "FYI" : "Providing Information that may be useful.",
         "IDK" : "Expressing uncertainty.",
-        "IMO" : "Stating an opinion.",
+        "IMO" : "Stating your own opinion.",
         "LOL" : "Reaction to something funny.",
         "NVM" : "Telling someone to disregard what was said.",
-        "WWJD" : "Religious phrase.",
+        "WWJD" : "What the great one would do .",
         "YOLO" : "Encouragement to take risks.",
-        "ROFL" : "Something is extremely funny.",
+        "ROFL" : "So funny it has you rolling.",
         "OMG" : "Expressing suprise or shock.",
         "JFYI" : "Another way to say just so you know.",
         "TYT" : "Don't rush.",
         "SMH" : "Disappointed expression.",
-        "BFF" : "Your friend til the end.",
-        "DIY" : "Craft it yourself, no store needed!",
+        "BFF" : "Your friend till the end.",
+        "DIY" : "Craft it yourself, no company needed!",
         "ETA" : "How long until arrival ?",
         "TBA" : "Details are coming soon.",
         "TBD" : "Not decided yet.",
-        "TGIF" : "Weekend starts now.",
+        "TGIF" : "The last day of the week.",
         "WTG" : "Great job, keep it up!",
         "NSFW" : "Don't open this at work.",
         "IYKYK" : "An inside joke for those who know.",
@@ -60,7 +60,7 @@ struct AcronymLogic: View {
         "STEM" : "A class involving 4 subjects.",
         "ADHD" : "A brain that loves to multitask.",
         "AIDS" : "A serious immune system disease.",
-        "BPM" : "Heartbeats or music tempo.",
+        "BPM" : "How many beats you hear in a minuet",
         "DNA" : "Your genetic blueprint.",
         "ICU" : "Where critical care happens!",
         "RNA" : "DNA's messenger helper.",
@@ -127,6 +127,7 @@ struct AcronymLogic: View {
     }
     
     var body: some View {
+        
         VStack {
             Text("Acronym Guessing Game")
                 .font(.title2.bold())
@@ -191,7 +192,7 @@ struct AcronymLogic: View {
                     currentRound = 1 // Restart from Round 1
                     startNewGame()
                 }
-                .padding()
+                Spacer()
             } else if currentRound == 4 && currentAcronym.allSatisfy({ correctGuesses.contains($0) }) {
                 // Display winning message only on round 4
                 Text("You Win Guessify!")
@@ -202,7 +203,7 @@ struct AcronymLogic: View {
                     currentRound = 1 // Restart from Round 1
                     startNewGame()
                 }
-                .padding()
+                Spacer()
             } else if currentAcronym.allSatisfy({ correctGuesses.contains($0) }) {
                 // If the user guesses the acronym correctly before round 4
                 Text("You Win The Round")
@@ -213,7 +214,7 @@ struct AcronymLogic: View {
                     currentRound += 1
                     startNewGame()
                 }
-
+                Spacer()
             }
         }
         .onAppear {
